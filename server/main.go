@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net"
 	"os"
@@ -14,9 +13,7 @@ func handleConnection(conn net.Conn) {
 	game.Prepare(A, B)
 	doer, waiter := A, B
 	for {
-		res := game.Round(doer, waiter)
-		fmt.Println(res)
-		if res {
+		if game.Round(doer, waiter) {
 			game.Win(doer, waiter)
 		}
 		doer, waiter = waiter, doer
